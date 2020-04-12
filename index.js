@@ -6,15 +6,17 @@ import path from 'path';
 import session from 'express-session';
 import flash from 'connect-flash';
 import dotenv from 'dotenv';
-import sequelize from 'sequelize';
-import mysql from 'mysql2';
+import 'mysql2';
+import sequelize from './models';
 dotenv.config();
+
 
 // Routers
 import pageRouter from './routes/pageRouter';
-import db from './models';
+
 
 const app = express();
+sequelize.sequelize.sync();
 
 // set a settings
 app.set('views', path.join(__dirname, 'views'));
