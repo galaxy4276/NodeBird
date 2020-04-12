@@ -63,7 +63,7 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
 }
 @media screen and (min-width: 800px) { .timeline { width: 500px; } }
 #twit-form {
-  border-bottom: 1px solid silver;
+  border-bottom: 1px solid silver;  
   padding: 10px;
   background: lightcoral;
   overflow: hidden;

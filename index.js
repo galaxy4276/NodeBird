@@ -6,10 +6,13 @@ import path from 'path';
 import session from 'express-session';
 import flash from 'connect-flash';
 import dotenv from 'dotenv';
+import sequelize from 'sequelize';
+import mysql from 'mysql2';
 dotenv.config();
 
 // Routers
 import pageRouter from './routes/pageRouter';
+import db from './models';
 
 const app = express();
 
