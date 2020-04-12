@@ -8,6 +8,8 @@ import flash from 'connect-flash';
 import dotenv from 'dotenv';
 import 'mysql2';
 import sequelize from './models';
+import passport from 'passport';
+import passportConfig from './passport';
 dotenv.config();
 
 
@@ -17,6 +19,7 @@ import pageRouter from './routes/pageRouter';
 
 const app = express();
 sequelize.sequelize.sync();
+passportConfig(passport);
 
 // set a settings
 app.set('views', path.join(__dirname, 'views'));
@@ -40,6 +43,8 @@ app.use(session({
   },
 }));
 app.use(flash());
+app.use(passport.initialize()); // req 객체에 passport 설정을 심음.
+app.use(passport.session()); // req.session 객체에 passport 정보를 저장.
 
 
 app.use('/', pageRouter);
