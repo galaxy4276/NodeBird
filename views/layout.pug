@@ -20,9 +20,9 @@ html
               .count.follower-count= user.Followers && user.Followers.length || 0
             input#my-id(type='hidden', value=user.id)
             a#my-profile.btn(href='/profile') 내 프로필
-            a#logout.btn(href='/auth/logout') 로그아웃
+            a#logout.btn(href='/logout') 로그아웃
           else
-            form#login-form(action='/post', method='post', enctype='multipart/form-data')
+            form#login-form(action='/login', method='post', enctype='multipart/form-data')
               .input-group
                 label(for='email') 이메일
                 input#email(type='email', name='email', required autofocus)
@@ -33,7 +33,7 @@ html
                 .error-message= loginError
               a#join.btn(href='/join') 회원가입
               button#login.btn(type='submit') 로그인
-              a#kakao.btn(href='/auth/kakao') 카카오톡
+              a#kakao.btn(href='/kakao') 카카오톡
           footer
             | Made by CHOI EUN GI
 block content
