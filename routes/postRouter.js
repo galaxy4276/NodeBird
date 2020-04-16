@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import fs from 'fs';
-import { Post, Hashtag } from '../models';
+import { Post, Hashtag, User } from '../models';
 import { isLoggedIn } from '../controllers/middlewares';
 import path from 'path';
 
@@ -51,6 +51,29 @@ postRouter.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
       await post.addHashtags(result.map(r => r[0]));
     }
     res.redirect('/');
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+
+postRouter.get('/hashtag', async (req, res, next) => {
+  const query = req.query.hashtag;
+  if (!query) {
+    return res.redirect('/');
+  }
+  try {
+    const hashtag = await Hashtag.findOne({ where: { title: query }});
+    let posts = [];
+    if (hashtag) {
+      posts = await hashtag.getPosts({ include: [{ model: User }]});
+    }
+    return res.render('main', {
+      title: `${query} | Nodebird`,
+      user: req.user,
+      twits: posts,
+    });
   } catch (error) {
     console.error(error);
     next(error);
