@@ -9,8 +9,6 @@ export const postJoin = async (req, res, next) => {
   const {
     body: { email, nick, password },
   } = req;
-
-
   try {
     const exUser = await User.findOne({ where: { email } });
     if (exUser) {
