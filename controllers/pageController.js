@@ -24,6 +24,14 @@ export const root = (req, res, next) => {
     order: [['createdAt', 'DESC']],
   })
     .then(posts => {
+      console.log('twits');
+      console.log(posts);
+      if (req.user) {
+        console.log('user: ');
+        console.log(req.user);
+        console.log(req.user.id);
+        console.log(req.user.nick);
+      }
       res.render('main', {
         title: 'NodeBird',
         twits: posts,
@@ -35,4 +43,4 @@ export const root = (req, res, next) => {
       console.error(err);
       next(err);
     });
-  }
+  } 

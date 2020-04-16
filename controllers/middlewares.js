@@ -11,3 +11,10 @@ export const isNotLoggedIn = (req, res, next) => {
   else res.redirect(routes.root);
 };
 
+export const localMiddleware = (req, res, next) => {
+  if (req.user) {
+    res.locals.user = req.user;
+    console.log('localMiddlewares send req.user information!')
+  }
+  next();
+};

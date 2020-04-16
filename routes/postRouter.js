@@ -41,6 +41,7 @@ postRouter.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
       content: req.body.content,
       img: req.body.url,
       userId: req.user.id,
+      user: req.user,
     });
     console.log(post);
     const hashtags = req.body.content.match(/#[^\s#]*/g);

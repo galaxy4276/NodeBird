@@ -24,7 +24,7 @@ const passportSettings = passport => {
       .catch(err => done(err));
   });
 
-  local(passport);
+  local(passport); 
   kakao(passport);
 };
 

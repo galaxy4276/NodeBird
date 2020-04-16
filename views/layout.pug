@@ -22,7 +22,7 @@ html
             a#my-profile.btn(href='/profile') 내 프로필
             a#logout.btn(href='/logout') 로그아웃
           else
-            form#login-form(action='/login' method='post')
+            form#login-form(action='/auth/login' method='post')
               .input-group
                 label(for='email') 이메일
                 input#email(type='email' name='email' required autofocus)
@@ -36,7 +36,7 @@ html
               a#kakao.btn(href='/kakao') 카카오톡
           footer
             | Made by&nbsp;
-            p Made By CHOI EUN GI
+            a(href='https://www.zerocho.com' target='_blank') ZeroCho
         block content
 
         
