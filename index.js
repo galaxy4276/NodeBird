@@ -18,6 +18,7 @@ dotenv.config();
 // Routers
 import pageRouter from './routes/pageRouter';
 import authRouter from './routes/authRouter';
+import postRouter from './routes/postRouter';
 
 const app = express();
 sequelize.sync();
@@ -51,6 +52,7 @@ app.use(passport.session()); // req.session 객체에 passport 정보를 저장.
 
 app.use('/', pageRouter);
 app.use('/', authRouter);
+app.use('/', postRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');

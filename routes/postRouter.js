@@ -1,10 +1,9 @@
-import express, { Router } from 'express';
+import express from 'express';
 import multer from 'multer';
 import fs from 'fs';
-import { Post, Hashtag, User } from '../models';
+import { Post, Hashtag } from '../models';
 import { isLoggedIn } from '../controllers/middlewares';
 import path from 'path';
-import { hash } from 'bcrypt';
 
 const postRouter = express.Router();
 
