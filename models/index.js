@@ -1,9 +1,5 @@
-import path from 'path';
-import { Sequelize } from 'sequelize';
-import User from './User';
-import Post from './Post';
-import Hashtag from './Hashtag';
-
+const path = require('path');
+const Sequelize = require('sequelize');
 
 const env = process.env.NODE_ENV || 'development';
 const config = require(path.join(__dirname, '../config/config.json'))[env];
@@ -14,9 +10,9 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 db.sequelize = sequelize;
 db.Seqeulize = Sequelize;
 
-db.User = User(sequelize, Sequelize);
-db.Post = Post(sequelize, Sequelize);
-db.Hashtag = Hashtag(sequelize, Sequelize);
+db.User = require('./User')(sequelize, Sequelize);
+db.Post = require('./Post')(sequelize, Sequelize);
+db.Hashtag = require('./Hashtag')(sequelize, Sequelize);
 
 db.User.hasMany(db.Post);
 db.Post.belongsTo(db.User);
@@ -35,4 +31,5 @@ db.User.belongsToMany(db.User, {
 
 console.log(db);
 
-export default db;
+module.exports = db;
+

@@ -1,5 +1,4 @@
 import KakaoStrategy from 'passport-kakao';
-import { User } from '../models';
 import routes from '../routes';
 import { kakaoCallback } from '../controllers/authController';
 

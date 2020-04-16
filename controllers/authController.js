@@ -1,9 +1,7 @@
 import passport from 'passport';
 import bcrypt from 'bcrypt';
 import routes from '../routes';
-import { User } from '../models/User';
-import 'sequelize';
-import 'mysql2';  
+import { User } from '../models';
 
 export const postJoin = async (req, res, next) => {
   const {
@@ -58,6 +56,7 @@ export const logout = (req, res) => {
 
 
 export const kakaoCallback = async (accessToken, refreshToken, profile, done) => {
+  console.log(User);
   try {
     const exUser = await User.findOne({ where: { snsId: profile.id, provider: 'kakao' }});
     if (exUser) done(null, exUser);

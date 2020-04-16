@@ -7,7 +7,9 @@ import session from 'express-session';
 import flash from 'connect-flash';
 import dotenv from 'dotenv';
 import 'mysql2';
-import sequelize from './models';
+import { sequelize } from './models';
+import './models';
+import 'sequelize';
 import passport from 'passport';
 import passportConfig from './passport';
 dotenv.config();
@@ -18,7 +20,7 @@ import pageRouter from './routes/pageRouter';
 import authRouter from './routes/authRouter';
 
 const app = express();
-sequelize.sequelize.sync();
+sequelize.sync();
 passportConfig(passport);
 
 // set a settings
